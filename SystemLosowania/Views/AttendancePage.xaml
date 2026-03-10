@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  x:Class="SystemLosowania.Views.AttendancePage"
+  Title="Sprawdz Obecnosc"
+     StyleClass="attendancePage">
+
+	<ScrollView>
+		<VerticalStackLayout Spacing="15" Padding="20" StyleClass="formContainer">
+
+			<Label x:Name="ClassTitleLabel" StyleClass="pageTitle" />
+
+			<Label Text="Zaznacz uczniow jako obecnych lub nieobecnych" StyleClass="sectionLabel" />
+
+			<CollectionView x:Name="AttendanceCollection" StyleClass="attendanceList">
+				<CollectionView.ItemTemplate>
+					<DataTemplate>
+						<Frame StyleClass="attendanceItemFrame" Margin="0,8">
+							<Grid ColumnDefinitions="*,Auto" Padding="10">
+								<Label Text="{Binding FullName}"
+									Grid.Column="0"
+									VerticalOptions="Center"
+									StyleClass="attendanceNameLabel" />
+
+								<Switch Grid.Column="1"
+									IsToggled="{Binding IsPresent}"
+									StyleClass="attendanceSwitch" />
+							</Grid>
+						</Frame>
+					</DataTemplate>
+				</CollectionView.ItemTemplate>
+			</CollectionView>
+
+			<Button x:Name="SaveButton"
+				Text="Zapisz Obecnosc"
+				Clicked="OnSaveAttendanceClicked"
+				StyleClass="saveButton"
+				Margin="0,20,0,0" />
+
+		</VerticalStackLayout>
+	</ScrollView>
+</ContentPage>

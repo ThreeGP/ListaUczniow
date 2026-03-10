@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       x:Class="SystemLosowania.Views.DrawPage"
+   Title="Losowanie Ucznia"
+       StyleClass="drawPage">
+
+	<Grid RowDefinitions="Auto,Auto,*" StyleClass="drawMainGrid">
+
+		<VerticalStackLayout Grid.Row="0" Padding="20" Spacing="10" StyleClass="drawTopSection">
+
+			<Label x:Name="ClassNameLabel" StyleClass="drawClassLabel" />
+
+			<HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+				<Label Text="Dzisiejszy Szczesliwy Numer:" StyleClass="luckyPromptLabel" />
+				<Entry x:Name="LuckyNumberEntry"
+					Placeholder="1-31"
+					Keyboard="Numeric"
+					WidthRequest="80"
+					StyleClass="luckyNumberInput" />
+			</HorizontalStackLayout>
+
+			<Button x:Name="DrawButtonMain"
+				Text="Otworz Skrzynke"
+				Clicked="OnDrawClicked"
+				StyleClass="drawButton" />
+
+			<Button x:Name="AttendanceButton"
+		  Text="Sprawdz Obecnosc"
+		  Clicked="OnAttendanceClicked"
+			  StyleClass="attendanceButton" />
+
+		</VerticalStackLayout>
+
+		<Frame Grid.Row="1" Margin="20,10" Padding="20" StyleClass="drawCaseFrame">
+			<VerticalStackLayout Spacing="8">
+				<Label Text="Otwieranie Skrzynki" HorizontalOptions="Center" StyleClass="resultLabel" />
+				<Label x:Name="RollingNameLabel" Text="..." HorizontalOptions="Center" StyleClass="resultNameLabel" />
+			</VerticalStackLayout>
+		</Frame>
+
+		<VerticalStackLayout 
+			Grid.Row="2"
+			Padding="20"
+			Spacing="10"
+			StyleClass="drawResultSection"
+			x:Name="ResultSection"
+			IsVisible="False">
+
+			<Label Text="Wylosowany Uczen:" StyleClass="resultLabel" />
+			<Label x:Name="ResultNameLabel" StyleClass="resultNameLabel" />
+			<Label x:Name="ResultInfoLabel" StyleClass="resultInfoLabel" />
+
+			<Button x:Name="SaveReturnButton"
+				Text="Zapisz i Wroc"
+				Clicked="OnSaveAndReturnClicked"
+				StyleClass="saveButton" />
+
+		</VerticalStackLayout>
+
+	</Grid>
+</ContentPage>
