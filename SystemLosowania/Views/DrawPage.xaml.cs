@@ -29,85 +29,85 @@ public partial class DrawPage : ContentPage
         if (loadedClass != null)
         {
             schoolClass = loadedClass;
- }
+        }
 
         Label? classNameLabel = this.FindByName<Label>("ClassNameLabel");
         if (classNameLabel != null)
-      {
-      classNameLabel.Text = "Klasa: " + className;
+        {
+            classNameLabel.Text = "Klasa: " + className;
         }
     }
 
- private async void OnAttendanceClicked(object sender, EventArgs e)
+    private async void OnAttendanceClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new AttendancePage(className));
-}
+    }
 
     private async void OnDrawClicked(object sender, EventArgs e)
     {
         if (isAnimating)
-      {
+        {
             return;
         }
 
-     if (schoolClass.Students.Count == 0)
+        if (schoolClass.Students.Count == 0)
         {
-    await DisplayAlert("Blad", "Brak uczniow w tej klasie!", "OK");
-   return;
-  }
+            await DisplayAlert("Blad", "Brak uczniow w tej klasie!", "OK");
+            return;
+        }
 
         Entry? luckyNumberEntry = this.FindByName<Entry>("LuckyNumberEntry");
-      Button? drawButtonMain = this.FindByName<Button>("DrawButtonMain");
-  Label? rollingNameLabel = this.FindByName<Label>("RollingNameLabel");
+        Button? drawButtonMain = this.FindByName<Button>("DrawButtonMain");
+        Label? rollingNameLabel = this.FindByName<Label>("RollingNameLabel");
         VerticalStackLayout? resultSection = this.FindByName<VerticalStackLayout>("ResultSection");
 
         int luckyNumber = 0;
         if (luckyNumberEntry != null)
         {
             int.TryParse(luckyNumberEntry.Text, out luckyNumber);
-   }
+        }
 
         Student? drawnStudent = drawManager.DrawStudent(schoolClass, luckyNumber);
         if (drawnStudent == null)
-    {
-  await DisplayAlert("Blad", "Brak dostepnych uczniow (wszyscy nieobecni)!", "OK");
-       return;
+        {
+            await DisplayAlert("Blad", "Brak dostepnych uczniow (wszyscy nieobecni)!", "OK");
+            return;
         }
 
         isAnimating = true;
 
         if (drawButtonMain != null)
-  {
-     drawButtonMain.IsEnabled = false;
+        {
+            drawButtonMain.IsEnabled = false;
         }
 
         if (resultSection != null)
         {
-    resultSection.IsVisible = false;
+            resultSection.IsVisible = false;
         }
 
         if (rollingNameLabel != null)
         {
-  List<Student> pool = schoolClass.Students;
-  Random random = new Random();
+            List<Student> pool = schoolClass.Students;
+            Random random = new Random();
 
             for (int i = 0; i < 15; i++)
-         {
+            {
                 Student current = pool[random.Next(pool.Count)];
-             rollingNameLabel.Text = current.GetFullName();
-    await Task.Delay(80 + i * 15);
+                rollingNameLabel.Text = current.GetFullName();
+                await Task.Delay(80 + i * 15);
             }
 
-       rollingNameLabel.Text = drawnStudent.GetFullName();
+            rollingNameLabel.Text = drawnStudent.GetFullName();
         }
 
-   await ShowResult(drawnStudent, luckyNumber);
+        await ShowResult(drawnStudent, luckyNumber);
 
         isAnimating = false;
 
         if (drawButtonMain != null)
         {
-          drawButtonMain.IsEnabled = true;
+            drawButtonMain.IsEnabled = true;
         }
     }
 
@@ -119,22 +119,22 @@ public partial class DrawPage : ContentPage
 
         if (resultNameLabel != null)
         {
-   resultNameLabel.Text = student.GetFullName();
+            resultNameLabel.Text = student.GetFullName();
         }
 
         string info = "Numer: " + student.LuckyNumber + " | Odpowiadal: " + student.TimesAnswered + "/3";
-if (student.LuckyNumber == luckyNumber && luckyNumber > 0)
+        if (student.LuckyNumber == luckyNumber && luckyNumber > 0)
         {
             info += " | SZCZESLIWY NUMER";
-}
+        }
 
         if (resultInfoLabel != null)
         {
-       resultInfoLabel.Text = info;
+            resultInfoLabel.Text = info;
         }
 
         if (resultSection != null)
-      {
+        {
             resultSection.IsVisible = true;
         }
 
@@ -143,7 +143,7 @@ if (student.LuckyNumber == luckyNumber && luckyNumber > 0)
 
     private async void OnSaveAndReturnClicked(object sender, EventArgs e)
     {
-fileManager.SaveClass(schoolClass);
-await Navigation.PopToRootAsync();
-}
+        fileManager.SaveClass(schoolClass);
+        await Navigation.PopToRootAsync();
+    }
 }

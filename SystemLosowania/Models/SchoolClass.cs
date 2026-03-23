@@ -1,24 +1,19 @@
-using System.Collections.Generic;
+namespace SystemLosowania.Models;
 
-namespace SystemLosowania.Models
+public class SchoolClass
 {
-    public class SchoolClass
+    public string ClassName { get; set; }
+    public List<Student> Students { get; set; }
+
+    public SchoolClass()
     {
-        public string ClassName { get; set; }
-        public List<Student> Students { get; set; }
+        ClassName = string.Empty;
+        Students = new List<Student>();
+    }
 
-        public SchoolClass()
-        {
-            // pusty konstruktor
-            ClassName = "";
-            Students = new List<Student>();
-        }
-
-        public SchoolClass(string className)
-        {
-            // konstruktor z nazwa klasy
-            ClassName = className;
-            Students = new List<Student>();
-        }
+    public SchoolClass(string className)
+    {
+        ClassName = className;
+        Students = new List<Student>();
     }
 }

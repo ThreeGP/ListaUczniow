@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       x:Class="SystemLosowania.Views.MainMenuPage"
-   Title="System Losowania"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SystemLosowania.Views.MainMenuPage"
+             Title="System Losowania"
              StyleClass="mainPage">
 
-	<ScrollView>
-		<VerticalStackLayout Spacing="20" Padding="30" StyleClass="mainContainer">
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="30" StyleClass="mainContainer">
+            <Label Text="System Losowania Uczniow" StyleClass="titleLabel" />
 
-			<Label Text="System Losowania Uczniow" StyleClass="titleLabel" />
+            <Label Text="Wybierz klase i zacznij losowanie!" StyleClass="subtitleLabel" />
 
-			<Label Text="Wybierz klase i zacznij losowanie!" StyleClass="subtitleLabel" />
+            <Button x:Name="ManageButton"
+                    Text="Zarzadzaj Klasami"
+                    Clicked="OnManageClassesClicked"
+                    StyleClass="menuButton" />
 
-			<Button x:Name="ManageButton"
-				Text="Zarzadzaj Klasami"
-				Clicked="OnManageClassesClicked"
-				StyleClass="menuButton" />
+            <Button x:Name="DrawButton"
+                    Text="Rozpocznij Losowanie"
+                    Clicked="OnStartDrawingClicked"
+                    StyleClass="menuButton" />
 
-			<Button x:Name="DrawButton"
-				Text="Rozpocznij Losowanie"
-				Clicked="OnStartDrawingClicked"
-				StyleClass="menuButton" />
+            <Button x:Name="StudentsButton"
+                    Text="Zarzadzaj Uczniami"
+                    Clicked="OnManageStudentsClicked"
+                    StyleClass="menuButton" />
 
-			<Button x:Name="StudentsButton"
-					Text="Zarzadzaj Uczniami"
-					Clicked="OnManageStudentsClicked"
-					StyleClass="menuButton" />
+            <Label Text="Ostatnie klasy:"
+                   StyleClass="sectionLabel"
+                   Margin="0,20,0,0" />
 
-			<Label Text="Ostatnie klasy:" StyleClass="sectionLabel" Margin="0,20,0,0" />
-
-			<CollectionView x:Name="ClassesCollection" StyleClass="classList">
-				<CollectionView.ItemTemplate>
-					<DataTemplate>
-						<Frame StyleClass="classItem" Margin="0,5">
-							<Label Text="{Binding}" StyleClass="classNameLabel" />
-						</Frame>
-					</DataTemplate>
-				</CollectionView.ItemTemplate>
-			</CollectionView>
-
-		</VerticalStackLayout>
-	</ScrollView>
+            <CollectionView x:Name="ClassesCollection" StyleClass="classList">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame StyleClass="classItem" Margin="0,5">
+                            <Label Text="{Binding}" StyleClass="classNameLabel" />
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
