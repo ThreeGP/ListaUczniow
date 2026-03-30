@@ -27,7 +27,7 @@ public partial class ManageStudentsPage : ContentPage
 
     private void LoadStudentsFromFile()
     {
-        SchoolClass? loadedClass = fileManager.LoadClass(className);
+        SchoolClass loadedClass = fileManager.LoadClass(className);
         if (loadedClass != null)
         {
             schoolClass = loadedClass;

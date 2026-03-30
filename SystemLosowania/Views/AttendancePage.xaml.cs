@@ -20,7 +20,7 @@ public partial class AttendancePage : ContentPage
         attendanceList = new ObservableCollection<StudentAttendance>();
         schoolClass = new SchoolClass(className);
 
-        Label? classTitleLabel = this.FindByName<Label>("ClassTitleLabel");
+        Label classTitleLabel = this.FindByName<Label>("ClassTitleLabel");
         if (classTitleLabel != null)
         {
             classTitleLabel.Text = "Klasa: " + className;
@@ -53,7 +53,7 @@ public partial class AttendancePage : ContentPage
             attendanceList.Add(attendance);
         }
 
-        CollectionView? attendanceCollection = this.FindByName<CollectionView>("AttendanceCollection");
+        CollectionView attendanceCollection = this.FindByName<CollectionView>("AttendanceCollection");
         if (attendanceCollection != null)
         {
             attendanceCollection.ItemsSource = attendanceList;

@@ -1,14 +1,11 @@
-/* === GLOBAL STYLES === */
+
 ^contentpage {
     background-color: #f5f5f5;
 }
-
-/* Selektor ^ - wszystkie ContentPage */
 ^contentpage > scrollview {
     background-color: transparent;
 }
 
-/* === MAIN PAGE STYLES === */
 .mainPage {
   background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
 }

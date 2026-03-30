@@ -25,13 +25,13 @@ public partial class DrawPage : ContentPage
 
     private void LoadClass()
     {
-        SchoolClass? loadedClass = fileManager.LoadClass(className);
+        SchoolClass loadedClass = fileManager.LoadClass(className);
         if (loadedClass != null)
         {
             schoolClass = loadedClass;
         }
 
-        Label? classNameLabel = this.FindByName<Label>("ClassNameLabel");
+        Label classNameLabel = this.FindByName<Label>("ClassNameLabel");
         if (classNameLabel != null)
         {
             classNameLabel.Text = "Klasa: " + className;
@@ -56,10 +56,10 @@ public partial class DrawPage : ContentPage
             return;
         }
 
-        Entry? luckyNumberEntry = this.FindByName<Entry>("LuckyNumberEntry");
-        Button? drawButtonMain = this.FindByName<Button>("DrawButtonMain");
-        Label? rollingNameLabel = this.FindByName<Label>("RollingNameLabel");
-        VerticalStackLayout? resultSection = this.FindByName<VerticalStackLayout>("ResultSection");
+        Entry luckyNumberEntry = this.FindByName<Entry>("LuckyNumberEntry");
+        Button drawButtonMain = this.FindByName<Button>("DrawButtonMain");
+        Label rollingNameLabel = this.FindByName<Label>("RollingNameLabel");
+        VerticalStackLayout resultSection = this.FindByName<VerticalStackLayout>("ResultSection");
 
         int luckyNumber = 0;
         if (luckyNumberEntry != null)
@@ -67,7 +67,7 @@ public partial class DrawPage : ContentPage
             int.TryParse(luckyNumberEntry.Text, out luckyNumber);
         }
 
-        Student? drawnStudent = drawManager.DrawStudent(schoolClass, luckyNumber);
+        Student drawnStudent = drawManager.DrawStudent(schoolClass, luckyNumber);
         if (drawnStudent == null)
         {
             await DisplayAlert("Blad", "Brak dostepnych uczniow (wszyscy nieobecni)!", "OK");
@@ -113,9 +113,9 @@ public partial class DrawPage : ContentPage
 
     private async Task ShowResult(Student student, int luckyNumber)
     {
-        Label? resultNameLabel = this.FindByName<Label>("ResultNameLabel");
-        Label? resultInfoLabel = this.FindByName<Label>("ResultInfoLabel");
-        VerticalStackLayout? resultSection = this.FindByName<VerticalStackLayout>("ResultSection");
+        Label resultNameLabel = this.FindByName<Label>("ResultNameLabel");
+        Label resultInfoLabel = this.FindByName<Label>("ResultInfoLabel");
+        VerticalStackLayout resultSection = this.FindByName<VerticalStackLayout>("ResultSection");
 
         if (resultNameLabel != null)
         {

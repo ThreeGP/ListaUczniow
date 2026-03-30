@@ -18,13 +18,13 @@ public partial class SelectClassForEditPage : ContentPage
     {
         List<string> classNames = fileManager.GetAllClassNames();
 
-        CollectionView? classListCollection = this.FindByName<CollectionView>("ClassListCollection");
+        CollectionView classListCollection = this.FindByName<CollectionView>("ClassListCollection");
         if (classListCollection != null)
         {
             classListCollection.ItemsSource = classNames;
         }
 
-        Label? noClassesLabel = this.FindByName<Label>("NoClassesLabel");
+        Label noClassesLabel = this.FindByName<Label>("NoClassesLabel");
         if (noClassesLabel != null)
         {
             noClassesLabel.IsVisible = classNames.Count == 0;

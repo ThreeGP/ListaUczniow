@@ -23,7 +23,7 @@ public partial class MainMenuPage : ContentPage
     private void LoadClasses()
     {
         List<string> classNames = fileManager.GetAllClassNames();
-        CollectionView? classesCollection = this.FindByName<CollectionView>("ClassesCollection");
+        CollectionView classesCollection = this.FindByName<CollectionView>("ClassesCollection");
 
         if (classesCollection != null)
         {

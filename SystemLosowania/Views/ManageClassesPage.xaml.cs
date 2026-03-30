@@ -23,7 +23,7 @@ public partial class ManageClassesPage : ContentPage
     private void LoadClasses()
     {
         List<string> classNames = fileManager.GetAllClassNames();
-        CollectionView? existingClassesCollection = this.FindByName<CollectionView>("ExistingClassesCollection");
+        CollectionView existingClassesCollection = this.FindByName<CollectionView>("ExistingClassesCollection");
 
         if (existingClassesCollection != null)
         {
@@ -33,13 +33,20 @@ public partial class ManageClassesPage : ContentPage
 
     private async void OnCreateClassClicked(object sender, EventArgs e)
     {
-        Entry? classNameEntry = this.FindByName<Entry>("ClassNameEntry");
+        Entry classNameEntry = this.FindByName<Entry>("ClassNameEntry");
         if (classNameEntry == null)
         {
             return;
         }
 
-        string className = classNameEntry.Text?.Trim() ?? string.Empty;
+        string className = classNameEntry.Text;
+        if (className == null)
+        {
+            className = string.Empty;
+        }
+
+        className = className.Trim();
+
         if (string.IsNullOrWhiteSpace(className))
         {
             await DisplayAlert("Blad", "Wpisz nazwe klasy!", "OK");
@@ -69,7 +76,7 @@ public partial class ManageClassesPage : ContentPage
 
         bool confirm = await DisplayAlert(
             "Potwierdzenie",
-            "Czy na pewno chcesz usunac klase: " + className + "?",
+            "Czy na pewno chcesz usunac klase: " + className,
             "Tak",
             "Nie");
 
